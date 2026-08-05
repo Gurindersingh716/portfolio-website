@@ -1,298 +1,471 @@
-<!-- Go to this github repo  https://github.com/ashiksanyo10/Port_Temp.git and clone it to your local machine -->
-<!-- Open the local copy of code and edit the templete -->
-
-
-<!-- Dont alter any tags, fill in you information on required field only and dont alter style.css and javascript file-->
-<!-- once editing the templete, Create a github repo and push the code-->
-<!-- you can host the website on gitpages or netlify  -->
-<!---->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Portfolio" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/fa62c117c7.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="styles.css" />
-    <title>Gurinder Singh</title>    <!-- Change it your name  --> .
-  </head>
-  <body class="light" id="top">
-    <header class="header center">
-      <h3>
-        <a href="https://www.linkedin.com/in/kush-jaiswal-08887b00/" class="link"  
-          >{GS}. <!--insert your initials here --></a
-        >
-      </h3> <!--use the linkedIn or any link in above href-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gurinder Singh — Java Backend Engineer</title>
+<meta name="description" content="Gurinder Singh is a Java backend engineer building accessible, real-world systems with Spring Boot, REST APIs, and relational databases.">
+<meta name="author" content="Gurinder Singh">
 
-      <nav class="nav center">
-        <ul class="nav__list center">
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#projects">Projects</a>
-          </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#skills">Skills</a>
-          </li>
-          <!-- <li class="nav__list-item">
-            <a class="link link--nav" href="#Internship">Internship</a>
-          </li> -->
-          <!--   <li class="nav__list-item">
-            <a class="link link--nav" href="#Exp">Experience</a>
-          </li>-->
-        </ul>
+<meta property="og:title" content="Gurinder Singh — Java Backend Engineer">
+<meta property="og:description" content="Building accessible, real-world systems with Spring Boot and REST APIs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gurindersingh.dev">
 
-        <button type="button" aria-label="toggle theme" class="btn btn--icon">
-          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
-        </button>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-        <button
-          type="button"
-          aria-label="toggle navigation"
-          class="btn btn--icon nav__hamburger"
-        >
-          <i aria-hidden="true" class="fas fa-bars"></i>
-        </button>
-      </nav>
-    </header>
+<style>
+:root{
+  --bg:#12151E;
+  --surface:#1A1F2B;
+  --surface-2:#212736;
+  --line:#2C3446;
+  --text:#C8CEDA;
+  --muted:#8792A8;
+  --amber:#E8A33D;
+  --cyan:#5CC8D8;
+  --green:#7FBF7F;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  --sans:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --maxw:940px;
+}
 
-    <main>
-      <!-- About -->
-      <div class="about center">
-        <h1>Hi, I am <span class="about__name">Gurinder Singh.</span></h1>
-        <h2 class="about__role">Aspiring Web Developer</h2>
-        <p class="about__desc"> <!-- Edit the About make sure you add your degree!-->
-          I'm a tech enthusiast and web developer currently pursuing my BCA at Christ University, Bangalore. I enjoy coding, solving complex problems, and building innovative web solutions!
-        </p> <!-- about you -->
-        <br>
-        <a href="mailto:ashiksanyo01@gmail.com">Mail: gurinddersingh77@gmail.com </a><p> Contact: +91 73409 67093</p>  <!--Change it to your mail id and contact no-->
-      </br>
-      
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
 
-        <div class="about__contact center">
-          <a href="https://docs.google.com/document/d/1SPdK4Z6zhZouChgxaDpIptfq9ycuEruf/edit?usp=sharing&ouid=117481858017345771622&rtpof=true&sd=true" target="_blank"  > <!-- drive link for resume-->
-            <span class="btn btn--outline">Resume</span> 
-          </a>
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 
-          <a
-            href="https://github.com/Gurindersingh716" target="_blank"
-            aria-label="github"
-            class="link link--icon"
-          >
-            <i aria-hidden="true" class="fab fa-github"></i>
-          </a> <!-- Github profile Link-->
+a{color:var(--cyan);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s ease,color .15s ease;}
+a:hover{border-bottom-color:var(--cyan);}
+a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px;}
 
-          <a
-            href="https://www.linkedin.com/in/gurinder-singh-191aa024a/" target="_blank"  
-            aria-label="linkedin"
-            class="link link--icon"
-          > 
-            <i aria-hidden="true" class="fab fa-linkedin"></i>
-          </a> <!-- LinledIn profile Link-->
-        </div>
+.skip{position:absolute;left:-9999px;top:0;background:var(--amber);color:#12151E;padding:10px 18px;font-family:var(--mono);font-weight:700;z-index:100;}
+.skip:focus{left:12px;top:12px;}
+
+/* ---------- nav ---------- */
+.site-nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(18,21,30,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.nav-mark{font-family:var(--mono);font-weight:700;font-size:.9rem;color:var(--amber);letter-spacing:-.02em;}
+.nav-mark .dim{color:var(--muted);font-weight:400;}
+.nav-links{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:.82rem;flex-wrap:wrap;}
+.nav-links a{color:var(--muted);}
+.nav-links a:hover{color:var(--cyan);}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 0 68px;border-bottom:1px solid var(--line);}
+.bootlog{
+  font-family:var(--mono);font-size:.76rem;line-height:1.9;
+  color:var(--muted);margin-bottom:34px;
+  border-left:2px solid var(--line);padding-left:16px;
+}
+.bootlog div{opacity:0;animation:reveal .4s ease forwards;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bootlog div:nth-child(1){animation-delay:.15s}
+.bootlog div:nth-child(2){animation-delay:.42s}
+.bootlog div:nth-child(3){animation-delay:.66s}
+.bootlog div:nth-child(4){animation-delay:.88s}
+.bootlog div:nth-child(5){animation-delay:1.08s}
+.bootlog .ok{color:var(--green);}
+.bootlog .key{color:var(--amber);}
+@keyframes reveal{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+.hero h1{
+  font-family:var(--mono);font-weight:700;
+  font-size:clamp(2.1rem,6vw,3.5rem);
+  letter-spacing:-.045em;line-height:1.05;
+  margin:0 0 14px;color:#EDF1F7;
+}
+.hero .role{
+  font-family:var(--mono);font-size:clamp(.95rem,2.4vw,1.15rem);
+  color:var(--amber);margin:0 0 22px;font-weight:500;
+}
+.hero .lede{font-size:1.06rem;max-width:56ch;color:var(--text);margin:0 0 30px;}
+.hero-links{display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:.85rem;}
+.btn{
+  display:inline-block;padding:9px 18px;border:1px solid var(--line);
+  background:var(--surface);color:var(--text);border-radius:3px;
+  transition:border-color .15s ease,color .15s ease,background .15s ease;
+}
+.btn:hover{border-color:var(--cyan);color:var(--cyan);background:var(--surface-2);}
+.btn.primary{border-color:var(--amber);color:var(--amber);}
+.btn.primary:hover{background:var(--amber);color:#12151E;border-color:var(--amber);}
+
+/* ---------- sections ---------- */
+section{padding:64px 0;border-bottom:1px solid var(--line);}
+.sec-label{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 8px;
+}
+h2{
+  font-family:var(--mono);font-weight:700;font-size:1.55rem;
+  letter-spacing:-.03em;margin:0 0 30px;color:#EDF1F7;
+}
+h2 .brace{color:var(--amber);font-weight:400;}
+h3{font-family:var(--mono);font-size:1.02rem;font-weight:600;margin:0 0 6px;color:#EDF1F7;letter-spacing:-.01em;}
+p{margin:0 0 16px;}
+p:last-child{margin-bottom:0;}
+.prose{max-width:62ch;}
+
+/* ---------- experience log ---------- */
+.log{list-style:none;margin:0;padding:0;font-family:var(--mono);}
+.log li{
+  padding:20px 0;border-bottom:1px solid var(--line);
+}
+.log li:last-child{border-bottom:none;padding-bottom:0;}
+.log-head{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;font-size:.82rem;margin-bottom:10px;}
+.ts{color:var(--muted);white-space:nowrap;}
+.lvl{font-weight:700;letter-spacing:.06em;}
+.lvl.info{color:var(--cyan);}
+.lvl.done{color:var(--green);}
+.log-title{color:#EDF1F7;font-weight:600;}
+.log-org{color:var(--amber);}
+.log-body{font-family:var(--sans);font-size:.97rem;color:var(--text);max-width:62ch;}
+.log-body ul{margin:0;padding-left:20px;}
+.log-body li{padding:0;border:none;margin-bottom:6px;}
+
+/* ---------- skills ---------- */
+.skills{font-family:var(--mono);font-size:.88rem;line-height:2.1;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:24px 26px;overflow-x:auto;}
+.skills dt{color:var(--cyan);display:inline;}
+.skills dd{display:inline;margin:0;color:var(--text);}
+.skills .row{display:block;}
+.skills .kw{color:var(--amber);}
+
+/* ---------- projects ---------- */
+.projects{display:grid;gap:20px;}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:4px;
+  padding:26px;transition:border-color .18s ease;
+}
+.card:hover{border-color:#3B4557;}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.badge{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:3px;border:1px solid;white-space:nowrap;
+}
+.badge.prod{color:var(--green);border-color:#3A5A44;background:rgba(127,191,127,.08);}
+.badge.dev{color:var(--amber);border-color:#5A4A2A;background:rgba(232,163,61,.08);}
+.field{margin-bottom:12px;font-size:.97rem;max-width:64ch;}
+.field .k{font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px;}
+.stack{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.chip{font-family:var(--mono);font-size:.74rem;padding:4px 10px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px;color:var(--muted);}
+.card-links{margin-top:18px;font-family:var(--mono);font-size:.82rem;display:flex;gap:18px;flex-wrap:wrap;}
+
+/* ---------- education ---------- */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:38px;}
+.edu-item{margin-bottom:22px;}
+.edu-item:last-child{margin-bottom:0;}
+.edu-meta{font-family:var(--mono);font-size:.8rem;color:var(--muted);}
+.cert-list{list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:.86rem;}
+.cert-list li{padding:8px 0;border-bottom:1px solid var(--line);color:var(--text);}
+.cert-list li:last-child{border-bottom:none;}
+.cert-list .issuer{color:var(--muted);}
+
+/* ---------- contact ---------- */
+.contact-grid{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:.88rem;}
+
+/* ---------- footer ---------- */
+footer{padding:34px 0 46px;font-family:var(--mono);font-size:.78rem;color:var(--muted);}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+
+@media (max-width:640px){
+  .two-col{grid-template-columns:1fr;gap:34px;}
+  .hero{padding:52px 0 48px;}
+  section{padding:50px 0;}
+  .bootlog{font-size:.68rem;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important;animation-delay:0ms !important;transition-duration:.001ms !important;}
+  .bootlog div{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="site-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <span class="nav-mark">gurindersingh<span class="dim">.dev</span></span>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#education">education</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="bootlog" aria-hidden="true">
+        <div>:: Spring Boot ::                  (v3.3.2)</div>
+        <div>Starting PortfolioApplication using Java 21</div>
+        <div>Tomcat initialized on port(s): <span class="key">443</span> (https)</div>
+        <div>Initialized JPA EntityManagerFactory 'default'</div>
+        <div><span class="ok">Started PortfolioApplication in 1.204 seconds</span></div>
       </div>
 
-      <!-- Projects -->
-      <section id="projects" class="section projects">
-        <h2 class="section__title">Projects</h2>
+      <h1>Gurinder Singh</h1>
+      <p class="role">Java Backend Engineer</p>
+      <p class="lede">
+        I build backend systems with Spring Boot and REST APIs — and I care about
+        making software that works for everyone, including the people most
+        interfaces forget. Currently pursuing an MCA at VIT Bhopal.
+      </p>
+      <div class="hero-links">
+        <a class="btn primary" href="/resume.pdf">Download résumé</a>
+        <a class="btn" href="https://github.com/Gurindersingh716">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/gurinder-singh-191aa024a">LinkedIn</a>
+        <a class="btn" href="mailto:contact@gurindersingh.dev">Email</a>
+      </div>
+    </div>
+  </header>
 
-        <div class="projects__grid">
-          <div class="project">
-            <h3>MedEzzy</h3> <!--Peoject Title -->
-            <p class="project__description">
-              An full stack e-commerce pharmaceutical platform for everyone
-            </p> <!--Project description-->
-            <ul class="project__stack">
-              <li class="project__stack-item">Node.js</li>
-              <li class="project__stack-item">Express.js</li>
-              <li class="project__stack-item">EJS</li>
-              <li class="project__stack-item">CSS</li>
-            </ul>
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap">
+      <p class="sec-label">01 — About</p>
+      <h2><span class="brace">/*</span> Who I am <span class="brace">*/</span></h2>
+      <div class="prose">
+        <p>
+          I'm a backend engineer based in Bhopal, India, working primarily in Java and
+          Spring Boot. My interest sits in the parts of a system people never see —
+          data modelling, API design, authentication, and the decisions that determine
+          whether an application still holds up a year later.
+        </p>
+        <p>
+          Alongside engineering, I've spent since January 2023 as a Technical Trainer at
+          Vision Aid, teaching advanced Excel and technical computing to differently-abled
+          learners. That work reshaped how I build software: accessibility isn't a
+          compliance checkbox added at the end, it's an architectural decision made at the
+          start. This site is built on that principle — semantic structure, full keyboard
+          navigation, and screen reader support throughout.
+        </p>
+        <p>
+          I'm currently completing an MCA at VIT Bhopal University and looking for backend
+          engineering roles where I can work on systems that matter.
+        </p>
+      </div>
+    </div>
+  </section>
 
-            <a
-              href="https://github.com/kush-8887/MedEzzy" target="_blank"
-              aria-label="source code"
-              class="link link--icon"
-            >  <!--Project link-->
-
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-            <a
-              href="https://example.com"
-              aria-label="live preview"
-              class="link link--icon"
-            > <!--Project demo or git link-->
-              <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-            </a>
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="wrap">
+      <p class="sec-label">02 — Experience</p>
+      <h2><span class="brace">/*</span> Where I've worked <span class="brace">*/</span></h2>
+      <ul class="log">
+        <li>
+          <div class="log-head">
+            <span class="ts">2023-01 →</span>
+            <span class="lvl info">INFO</span>
+            <span class="log-title">Technical Trainer</span>
+            <span class="log-org">· Vision Aid</span>
           </div>
+          <div class="log-body">
+            <ul>
+              <li>Trained differently-abled learners in Advanced MS Excel, computer applications, and technical computing skills.</li>
+              <li>Developed course curriculum and training material adapted for screen reader users.</li>
+              <li>Contributed to the Learning &amp; Development team on course structure and delivery.</li>
+              <li>Mentored learners one-on-one through practical, assessment-based progression.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="log-head">
+            <span class="ts">2023-05 → 2023-07</span>
+            <span class="lvl done">DONE</span>
+            <span class="log-title">Data Structures &amp; Algorithms Intern</span>
+            <span class="log-org">· Skolar</span>
+          </div>
+          <div class="log-body">
+            <ul>
+              <li>Completed a three-month intensive training and internship in data structures and algorithms.</li>
+              <li>Focused on algorithm optimisation, complexity analysis, and structured problem solving.</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-          <div class="project">
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="wrap">
+      <p class="sec-label">03 — Skills</p>
+      <h2><span class="brace">/*</span> What I work with <span class="brace">*/</span></h2>
+      <dl class="skills">
+        <span class="row"><span class="kw">import</span> <dt>languages</dt><dd>.{ Java, Python, JavaScript, TypeScript, C }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>java_backend</dt><dd>.{ Spring&nbsp;Boot, Spring&nbsp;MVC, Hibernate, JPA, REST&nbsp;APIs, Maven, Gradle }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>python_backend</dt><dd>.{ FastAPI, SQLAlchemy, Pydantic, Uvicorn, REST&nbsp;APIs }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>web</dt><dd>.{ MongoDB, Express, React, Node.js, Next.js, Tailwind, Bootstrap }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>data</dt><dd>.{ MySQL, PostgreSQL, MongoDB, Firebase }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>cloud_tools</dt><dd>.{ AWS, Azure, Git, GitHub, Postman }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>practice</dt><dd>.{ Team&nbsp;Leadership, Mentoring, Technical&nbsp;Training, Accessible&nbsp;Engineering, DSA }</dd></span>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <div class="wrap">
+      <p class="sec-label">04 — Projects</p>
+      <h2><span class="brace">/*</span> What I've built <span class="brace">*/</span></h2>
+      <div class="projects">
+
+        <article class="card">
+          <div class="card-top">
+            <h3>Bhaabi Gaming Club</h3>
+            <span class="badge dev">In development</span>
+          </div>
+          <div class="field"><span class="k">Problem</span>
+            Mainstream mobile card games are effectively unplayable with a screen reader — visual-only state, unlabelled controls, and no audio feedback shut blind players out entirely.
+          </div>
+          <div class="field"><span class="k">Approach</span>
+            An Android card game platform built accessible-first, supporting Bhaabi, 99, UNO, and Hand Cricket. Every game state is announced through TTS and screen reader support, with online multiplayer and in-game voice chat so play stays social rather than isolated.
+          </div>
+          <div class="field"><span class="k">Engineering</span>
+            Multi-game architecture sharing a common engine, real-time multiplayer state synchronisation over Firebase, and a full accessibility layer covering navigation, turn announcements, and card recognition.
+          </div>
+          <div class="stack">
+            <span class="chip">Java</span><span class="chip">Android</span><span class="chip">Firebase</span>
+            <span class="chip">Realtime DB</span><span class="chip">TTS</span><span class="chip">Voice Chat</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/Gurindersingh716">Source</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <h3>FPMIS — Forensic Post-Mortem Intelligence System</h3>
+            <span class="badge prod">Lead Developer</span>
+          </div>
+          <div class="field"><span class="k">Problem</span>
+            Forensic case work is fragmented across autopsy reporting, evidence handling, and missing-person records — so unidentified bodies and open cases that should connect often never do.
+          </div>
+          <div class="field"><span class="k">Approach</span>
+            A full-stack forensic case management platform spanning eight integrated modules: case management, digital autopsy reporting, time-of-death estimation, decomposition tracking, evidence handling, and cross-case alerts. Selected as a finalist and presented at HealthHack 2026, VIT Bhopal University.
+          </div>
+          <div class="field"><span class="k">Engineering</span>
+            Led a team of five developers. Designed a 100-point weighted matching algorithm linking unidentified bodies to missing-person records across seven attributes, returning ranked results with confidence tiers. Built secure REST APIs with JWT authentication, role-based access control, and full audit logging over a normalised PostgreSQL schema, with mobile-first delivery for field access.
+          </div>
+          <div class="stack">
+            <span class="chip">FastAPI</span><span class="chip">Python</span><span class="chip">SQLAlchemy</span>
+            <span class="chip">PostgreSQL</span><span class="chip">JWT</span><span class="chip">Next.js 14</span>
+            <span class="chip">TypeScript</span><span class="chip">Tailwind</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
             <h3>Salesalizer</h3>
-            <p class="project__description">
-              An innovative platform for analyzing and predicting sales for retailers and businesses.
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">Node.js</li>
-              <li class="project__stack-item">Express.js</li>
-              <li class="project__stack-item">ReactJS</li>
-              <li class="project__stack-item">Tailwind</li>
-              <li class="project__stack-item">Prophet</li>
-              <li class="project__stack-item">Python</li>
-            </ul>
-
-            <a
-              href="https://github.com/kush-8887/sales-alizer" target="_blank"
-              aria-label="https://github.com/ashiksanyo10/DroneXYOLOv8" target="_blank"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-            <a
-              href="https://example.com"
-              aria-label="live preview"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-            </a>
+            <span class="badge prod">Shipped</span>
           </div>
+          <div class="field"><span class="k">Problem</span>
+            Retailers plan inventory and staffing against guesswork, because historical sales data sitting in a database says nothing about next month on its own.
+          </div>
+          <div class="field"><span class="k">Approach</span>
+            An AI-powered sales prediction platform for retailers and small businesses, pairing time-series forecasting with an interactive dashboard for surfacing trends and insights.
+          </div>
+          <div class="field"><span class="k">Engineering</span>
+            Integrated Prophet models for time-series forecasting, reaching up to 95% accuracy on sales prediction. Implemented role-based access control, authentication, and session management across a Node/Express API backed by MongoDB.
+          </div>
+          <div class="stack">
+            <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span>
+            <span class="chip">React</span><span class="chip">Prophet</span><span class="chip">Nivo Charts</span>
+          </div>
+        </article>
 
-          <!-- <div class="project">
-            <h3>PowerBI Dashboards</h3>
-            <p class="project__description">
-              Developed a Business Intelligence portfolio with real-case reports showcasing data analysis expertise.
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">PowerBI</li>
-              <li class="project__stack-item">SQL</li>
-              <li class="project__stack-item">Excel</li>
-            </ul>
+      </div>
+    </div>
+  </section>
 
-            <a
-              href="https://www.novypro.com/profile_projects/ashiksanyo" target="_blank"
-              aria-label="https://www.novypro.com/project/us-sales-dash" target="_blank"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-            <a
-              href="https://example.com"
-              aria-label="live preview"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-            </a>
-          </div> -->
+  <!-- ============ EDUCATION ============ -->
+  <section id="education">
+    <div class="wrap">
+      <p class="sec-label">05 — Education &amp; Certifications</p>
+      <h2><span class="brace">/*</span> Background <span class="brace">*/</span></h2>
+      <div class="two-col">
+        <div>
+          <h3 style="margin-bottom:16px;">Education</h3>
+          <div class="edu-item">
+            <strong>Master of Computer Applications</strong><br>
+            <span class="edu-meta">VIT Bhopal University · 2025 – Present</span>
+          </div>
+          <div class="edu-item">
+            <strong>Bachelor of Computer Applications</strong><br>
+            <span class="edu-meta">Christ University, Bengaluru · Completed May 2025</span>
+          </div>
         </div>
-      </section>
-
-      <section id="Internship" class="section Internship" id="Internship">
-        <h2 class="section__title">Internships & Certifications</h2>
-
-      <div class="project">
-        <h3>Techincal Trainer</h3>
-        <p class="project__description">
-          Worked as part time technical trainer in Vision Aid
-        </p>
-        <ul class="project__stack">
-          <li class="project__stack-item">Advanced Excel</li>
-          <li class="project__stack-item">Python</li>
-          <li class="project__stack-item">Technical training</li>
-        </ul>
-
-        <!-- <a
-          href=""  
-          aria-label="https://www.novypro.com/project/us-sales-dash" target="_blank"
-          class="link link--icon"
-        >
-          <i aria-hidden="true" class="fab fa-github"></i>
-        </a> -->
-        <a
-          href="https://example.com"
-          aria-label="live preview"
-          class="link link--icon"
-        >
-          <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-      <section id="Internship" class="section Internship" id="Internship">
-        <!-- <h2 class="section__title">Internships & Certifications</h2> -->
-
-      <div class="project">
-        <h3>Skolar Data structures and algorithm</h3>
-        <p class="project__description">
-          Completed certification course provided by Skolar in data structures and algorithm
-        </p>
-        <ul class="project__stack">
-          <li class="project__stack-item">Data Structures </li>
-          <li class="project__stack-item">C++</li>
-          <li class="project__stack-item">Advanced Algorithms</li>
-        </ul>
-
-        <!-- <a
-          href=""  
-          aria-label="https://www.novypro.com/project/us-sales-dash" target="_blank"
-          class="link link--icon"
-        >
-          <i aria-hidden="true" class="fab fa-github"></i>
-        </a> -->
-        <a
-          href="https://example.com"
-          aria-label="live preview"
-          class="link link--icon"
-        >
-          <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-        </a>
+        <div>
+          <h3 style="margin-bottom:16px;">Certifications</h3>
+          <ul class="cert-list">
+            <li>AWS Cloud Foundations <span class="issuer">— AWS</span></li>
+            <li>Data Structures &amp; Algorithms <span class="issuer">— Skolar</span></li>
+          </ul>
+          <h3 style="margin:26px 0 12px;">Languages</h3>
+          <p style="font-family:var(--mono);font-size:.86rem;color:var(--muted);margin:0;">English · Hindi · Punjabi</p>
+        </div>
       </div>
     </div>
   </section>
 
- <!-- duplicate the above section and you can change it to paper or experience-->
-
-      
-      <!-- Skills -->
-      <section class="section skills" id="skills">
-        <h2 class="section__title">Skills</h2>
-        <ul class="skills__list">
-          <li class="skills__list-item btn btn--plain">HTML</li>                        <!--You can fill in the elective course and you can remove extras-->
-          <li class="skills__list-item btn btn--plain">CSS</li>
-          <li class="skills__list-item btn btn--plain">JavaScript</li>
-          <li class="skills__list-item btn btn--plain">React</li>
-          <li class="skills__list-item btn btn--plain">Python</li>
-          <li class="skills__list-item btn btn--plain">Machine Learning</li>
-          <li class="skills__list-item btn btn--plain">ElectronJS</li>
-          <li class="skills__list-item btn btn--plain">Git</li>
-        </ul>
-      </section>
-
-    <footer class="footer">
-      <a
-        href="" 
-        class="link footer__link"
-      >  
-        Created By Gurinder Singh! <!-- edit it to your name -->
-      </a>
-    </footer>
-
-    <div class="scroll-container">
-    <div class="scroll-top">
-      <a aria-label="Scroll up" href="#top">
-        <i aria-hidden="true" class="fas fa-arrow-up"></i>
-      </a>
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="wrap">
+      <p class="sec-label">06 — Contact</p>
+      <h2><span class="brace">/*</span> Get in touch <span class="brace">*/</span></h2>
+      <div class="prose" style="margin-bottom:26px;">
+        <p>
+          I'm open to backend engineering roles and internships, and happy to talk about
+          Spring Boot, API design, or building accessible software. The fastest way to
+          reach me is email.
+        </p>
+      </div>
+      <div class="contact-grid">
+        <a class="btn primary" href="mailto:contact@gurindersingh.dev">contact@gurindersingh.dev</a>
+        <a class="btn" href="https://github.com/Gurindersingh716">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/gurinder-singh-191aa024a">LinkedIn</a>
+        <a class="btn" href="/resume.pdf">Résumé (PDF)</a>
+      </div>
     </div>
-    </div>
+  </section>
 
-    <script src="./script.js"></script>
-  </body>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Gurinder Singh · Bhopal, India</span>
+    <span>Built with semantic HTML · WCAG AA · No trackers</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
 </html>
