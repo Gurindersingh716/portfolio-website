@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gurinder Singh — Java Backend Engineer</title>
-<meta name="description" content="Gurinder Singh is a Java backend engineer building accessible, real-world systems with Spring Boot, REST APIs, and relational databases.">
+<meta name="description" content="Gurinder Singh is a Java backend engineer building accessible, real-world systems with Spring Boot and REST APIs — and running them in production on self-managed Linux infrastructure.">
 <meta name="author" content="Gurinder Singh">
 
 <meta property="og:title" content="Gurinder Singh — Java Backend Engineer">
-<meta property="og:description" content="Building accessible, real-world systems with Spring Boot and REST APIs.">
+<meta property="og:description" content="Backend systems with Spring Boot and REST APIs, deployed and operated in production.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gurindersingh.dev">
 
@@ -83,6 +83,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
 .bootlog .ok{color:var(--green);}
 .bootlog .key{color:var(--amber);}
 @keyframes reveal{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:start;}
+.portrait-col{padding-top:6px;}
+.portrait{
+  display:block;width:158px;height:158px;object-fit:cover;object-position:center 12%;
+  border:1px solid var(--line);border-radius:4px;background:var(--surface);
+}
+.portrait-cap{
+  font-family:var(--mono);font-size:.68rem;color:var(--muted);
+  margin:10px 0 0;text-align:center;letter-spacing:.04em;
+}
 
 .hero h1{
   font-family:var(--mono);font-weight:700;
@@ -164,6 +175,22 @@ p:last-child{margin-bottom:0;}
 .stack{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
 .chip{font-family:var(--mono);font-size:.74rem;padding:4px 10px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px;color:var(--muted);}
 .card-links{margin-top:18px;font-family:var(--mono);font-size:.82rem;display:flex;gap:18px;flex-wrap:wrap;}
+.card-links a{color:var(--amber);}
+.card-links a:hover{border-bottom-color:var(--amber);}
+
+/* ---------- running systems ---------- */
+.systems{
+  list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:.85rem;
+  border:1px solid var(--line);border-radius:4px;background:var(--surface);overflow:hidden;
+}
+.systems li{
+  display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;
+  padding:13px 18px;border-bottom:1px solid var(--line);
+}
+.systems li:last-child{border-bottom:none;}
+.systems .dot{color:var(--green);}
+.systems .host{color:#EDF1F7;}
+.systems .what{color:var(--muted);font-family:var(--sans);font-size:.92rem;}
 
 /* ---------- education ---------- */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:38px;}
@@ -214,13 +241,21 @@ p:last-child{margin-bottom:0;}
 
 /* ---------- footer ---------- */
 footer{padding:34px 0 46px;font-family:var(--mono);font-size:.78rem;color:var(--muted);}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+footer .wrap{display:flex;justify-content:space-between;gap:10px 32px;flex-wrap:wrap;}
+
+@media (max-width:820px){
+  .hero-grid{grid-template-columns:1fr;gap:30px;}
+  .portrait-col{order:-1;padding-top:0;}
+  .portrait{width:112px;height:112px;}
+  .portrait-cap{text-align:left;}
+}
 
 @media (max-width:640px){
   .two-col{grid-template-columns:1fr;gap:34px;}
   .hero{padding:52px 0 48px;}
   section{padding:50px 0;}
   .bootlog{font-size:.68rem;}
+  .systems li{padding:12px 14px;gap:8px;}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -257,22 +292,32 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
         <div>:: Spring Boot ::                  (v3.3.2)</div>
         <div>Starting PortfolioApplication using Java 21</div>
         <div>Tomcat initialized on port(s): <span class="key">443</span> (https)</div>
-        <div>Initialized JPA EntityManagerFactory 'default'</div>
+        <div>Mapped <span class="key">/api/projects</span>, <span class="key">/api/contact</span></div>
         <div><span class="ok">Started PortfolioApplication in 1.204 seconds</span></div>
       </div>
 
-      <h1>Gurinder Singh</h1>
-      <p class="role">Java Backend Engineer</p>
-      <p class="lede">
-        I build backend systems with Spring Boot and REST APIs — and I care about
-        making software that works for everyone, including the people most
-        interfaces forget. Currently pursuing an MCA at VIT Bhopal.
-      </p>
-      <div class="hero-links">
-        <a class="btn primary" href="/resume.pdf">Download résumé</a>
-        <a class="btn" href="https://github.com/Gurindersingh716">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/gurinder-singh-191aa024a">LinkedIn</a>
-        <a class="btn" href="mailto:contact@gurindersingh.dev">Email</a>
+      <div class="hero-grid">
+        <div>
+          <h1>Gurinder Singh</h1>
+          <p class="role">Java Backend Engineer</p>
+          <p class="lede">
+            I build backend systems with Spring Boot and REST APIs — and I run them
+            myself, on infrastructure I provision and maintain. I care about software
+            that works for everyone, including the people most interfaces forget.
+            Currently completing an MCA at VIT Bhopal.
+          </p>
+          <div class="hero-links">
+            <a class="btn primary" href="/resume.pdf">Download résumé</a>
+            <a class="btn" href="https://github.com/Gurindersingh716">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/gurinder-singh-191aa024a">LinkedIn</a>
+            <a class="btn" href="mailto:contact@gurindersingh.dev">Email</a>
+          </div>
+        </div>
+        <div class="portrait-col">
+          <img class="portrait" src="/profile.jpg" width="158" height="158"
+               alt="Gurinder Singh" loading="eager" decoding="async">
+          <p class="portrait-cap">Bhopal, IN</p>
+        </div>
       </div>
     </div>
   </header>
@@ -296,6 +341,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
           compliance checkbox added at the end, it's an architectural decision made at the
           start. This site is built on that principle — semantic structure, full keyboard
           navigation, and screen reader support throughout.
+        </p>
+        <p>
+          I also run what I build. Everything on this page is served from a Linux server
+          I provisioned and configured myself — containers behind an Nginx reverse proxy,
+          TLS certificates that renew on their own, application state kept in managed
+          Postgres so the machine stays disposable. Writing an API and operating one turn
+          out to be different skills, and I wanted both.
         </p>
         <p>
           I'm currently completing an MCA at VIT Bhopal University and looking for backend
@@ -351,13 +403,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
       <p class="sec-label">03 — Skills</p>
       <h2><span class="brace">/*</span> What I work with <span class="brace">*/</span></h2>
       <dl class="skills">
-        <span class="row"><span class="kw">import</span> <dt>languages</dt><dd>.{ Java, Python, JavaScript, TypeScript, C }</dd></span>
-        <span class="row"><span class="kw">import</span> <dt>java_backend</dt><dd>.{ Spring&nbsp;Boot, Spring&nbsp;MVC, Hibernate, JPA, REST&nbsp;APIs, Maven, Gradle }</dd></span>
-        <span class="row"><span class="kw">import</span> <dt>python_backend</dt><dd>.{ FastAPI, SQLAlchemy, Pydantic, Uvicorn, REST&nbsp;APIs }</dd></span>
-        <span class="row"><span class="kw">import</span> <dt>web</dt><dd>.{ MongoDB, Express, React, Node.js, Next.js, Tailwind, Bootstrap }</dd></span>
-        <span class="row"><span class="kw">import</span> <dt>data</dt><dd>.{ MySQL, PostgreSQL, MongoDB, Firebase }</dd></span>
-        <span class="row"><span class="kw">import</span> <dt>cloud_tools</dt><dd>.{ AWS, Azure, Git, GitHub, Postman }</dd></span>
-        <span class="row"><span class="kw">import</span> <dt>practice</dt><dd>.{ Team&nbsp;Leadership, Mentoring, Technical&nbsp;Training, Accessible&nbsp;Engineering, DSA }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>backend</dt><dd>.{ Java, Spring&nbsp;Boot, Spring&nbsp;MVC, Hibernate, JPA, REST&nbsp;APIs }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>python</dt><dd>.{ Python, FastAPI, SQLAlchemy, Pydantic }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>data</dt><dd>.{ PostgreSQL, MySQL, MongoDB, Firebase, Flyway }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>infrastructure</dt><dd>.{ Docker, Nginx, Linux, Oracle&nbsp;Cloud, AWS, Git, Maven }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>frontend</dt><dd>.{ TypeScript, Next.js, React, JavaScript }</dd></span>
+        <span class="row"><span class="kw">import</span> <dt>practice</dt><dd>.{ API&nbsp;design, Accessible&nbsp;engineering, Team&nbsp;leadership, Technical&nbsp;training }</dd></span>
       </dl>
     </div>
   </section>
@@ -371,69 +422,76 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 
         <article class="card">
           <div class="card-top">
-            <h3>Bhaabi Gaming Club</h3>
-            <span class="badge dev">In development</span>
+            <h3>Baazi Club</h3>
+            <span class="badge dev">In closed testing</span>
           </div>
           <div class="field"><span class="k">Problem</span>
-            Mainstream mobile card games are effectively unplayable with a screen reader — visual-only state, unlabelled controls, and no audio feedback shut blind players out entirely.
+            Mainstream mobile card games are unplayable with a screen reader &mdash; state is rendered visually, controls go unlabelled, and there is no audio feedback. Blind players are shut out of a category that is fundamentally social.
           </div>
           <div class="field"><span class="k">Approach</span>
-            An Android card game platform built accessible-first, supporting Bhaabi, 99, UNO, and Hand Cricket. Every game state is announced through TTS and screen reader support, with online multiplayer and in-game voice chat so play stays social rather than isolated.
+            An accessibility-first Android card game platform shipping four games &mdash; Bhaabi, Seep, Ninety-Nine and Hand Cricket &mdash; with full TalkBack support and spoken game state throughout. Online multiplayer with invite links, voice rooms holding up to fifteen players, friends and chat, and per-game weekly leaderboards keep play social rather than isolated.
           </div>
           <div class="field"><span class="k">Engineering</span>
-            Multi-game architecture sharing a common engine, real-time multiplayer state synchronisation over Firebase, and a full accessibility layer covering navigation, turn announcements, and card recognition.
+            A shared engine spanning four rulesets, with real-time multiplayer state synchronisation over Firebase. Room lifecycle management covers locking, master transfer, and automatic promotion when a host leaves. Voice rooms persist in the background during play, and Android App Links resolve invite URLs straight into the waiting room via a verified assetlinks contract.
           </div>
           <div class="stack">
             <span class="chip">Java</span><span class="chip">Android</span><span class="chip">Firebase</span>
-            <span class="chip">Realtime DB</span><span class="chip">TTS</span><span class="chip">Voice Chat</span>
+            <span class="chip">Realtime DB</span><span class="chip">WebRTC</span><span class="chip">TalkBack</span>
           </div>
           <div class="card-links">
-            <a href="https://github.com/Gurindersingh716">Source</a>
+            <a href="https://baaziclub.net">baaziclub.net &rarr;</a>
           </div>
         </article>
 
         <article class="card">
           <div class="card-top">
-            <h3>FPMIS — Forensic Post-Mortem Intelligence System</h3>
-            <span class="badge prod">Lead Developer</span>
+            <h3>FPMIS &mdash; Forensic Post-Mortem Intelligence System</h3>
+            <span class="badge prod">Shipped</span>
           </div>
           <div class="field"><span class="k">Problem</span>
-            Forensic case work is fragmented across autopsy reporting, evidence handling, and missing-person records — so unidentified bodies and open cases that should connect often never do.
+            Forensic case work is fragmented across autopsy reporting, evidence handling, and missing-person records &mdash; so unidentified bodies and open cases that should connect often never do.
           </div>
           <div class="field"><span class="k">Approach</span>
             A full-stack forensic case management platform spanning eight integrated modules: case management, digital autopsy reporting, time-of-death estimation, decomposition tracking, evidence handling, and cross-case alerts. Selected as a finalist and presented at HealthHack 2026, VIT Bhopal University.
           </div>
           <div class="field"><span class="k">Engineering</span>
-            Led a team of five developers. Designed a 100-point weighted matching algorithm linking unidentified bodies to missing-person records across seven attributes, returning ranked results with confidence tiers. Built secure REST APIs with JWT authentication, role-based access control, and full audit logging over a normalised PostgreSQL schema, with mobile-first delivery for field access.
+            Led a team of five developers. Designed a 100-point weighted matching algorithm linking unidentified bodies to missing-person records across seven attributes, returning ranked results with confidence tiers. Built secure REST APIs with JWT authentication, role-based access control, and full audit logging over a normalised PostgreSQL schema. Deployed to production on a self-managed Linux server, containerised with Docker Compose behind an Nginx reverse proxy with automated TLS.
           </div>
           <div class="stack">
-            <span class="chip">FastAPI</span><span class="chip">Python</span><span class="chip">SQLAlchemy</span>
-            <span class="chip">PostgreSQL</span><span class="chip">JWT</span><span class="chip">Next.js 14</span>
-            <span class="chip">TypeScript</span><span class="chip">Tailwind</span>
+            <span class="chip">FastAPI</span><span class="chip">Python</span><span class="chip">PostgreSQL</span>
+            <span class="chip">Next.js 14</span><span class="chip">TypeScript</span><span class="chip">JWT</span>
+            <span class="chip">Docker</span><span class="chip">Nginx</span>
           </div>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <h3>Salesalizer</h3>
-            <span class="badge prod">Shipped</span>
-          </div>
-          <div class="field"><span class="k">Problem</span>
-            Retailers plan inventory and staffing against guesswork, because historical sales data sitting in a database says nothing about next month on its own.
-          </div>
-          <div class="field"><span class="k">Approach</span>
-            An AI-powered sales prediction platform for retailers and small businesses, pairing time-series forecasting with an interactive dashboard for surfacing trends and insights.
-          </div>
-          <div class="field"><span class="k">Engineering</span>
-            Integrated Prophet models for time-series forecasting, reaching up to 95% accuracy on sales prediction. Implemented role-based access control, authentication, and session management across a Node/Express API backed by MongoDB.
-          </div>
-          <div class="stack">
-            <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span>
-            <span class="chip">React</span><span class="chip">Prophet</span><span class="chip">Nivo Charts</span>
+          <div class="card-links">
+            <a href="https://fpmis.gurindersingh.dev">fpmis.gurindersingh.dev &rarr;</a>
           </div>
         </article>
 
       </div>
+
+      <h3 style="margin:44px 0 8px;">In production</h3>
+      <p class="prose" style="font-size:.97rem;margin-bottom:20px;">
+        Three services, one Ubuntu ARM instance I provision and maintain. Each sits
+        behind Nginx with its own certificate; application data lives in managed
+        Postgres, so the server itself holds no state and can be rebuilt from scratch.
+      </p>
+      <ul class="systems">
+        <li>
+          <span class="dot" aria-hidden="true">&#9679;</span>
+          <a class="host" href="https://api.gurindersingh.dev/docs">api.gurindersingh.dev</a>
+          <span class="what">Spring Boot REST API — serves the project data on this page</span>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true">&#9679;</span>
+          <a class="host" href="https://fpmis.gurindersingh.dev">fpmis.gurindersingh.dev</a>
+          <span class="what">FPMIS — Next.js and FastAPI, orchestrated with Docker Compose</span>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true">&#9679;</span>
+          <a class="host" href="https://baaziclub.net">baaziclub.net</a>
+          <span class="what">Baazi Club — app site, deep-link verification, Play Store compliance</span>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -563,7 +621,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   }
 
   function badgeClass(status) {
-    return /develop|progress/i.test(status || '') ? 'dev' : 'prod';
+    return /develop|progress|testing|beta/i.test(status || '') ? 'dev' : 'prod';
+  }
+
+  /* Live destinations, keyed by project title.
+     Used only as a fallback — if the API ever returns a liveUrl field,
+     that wins and this map can be deleted. */
+  var LIVE = {
+    'Baazi Club': 'https://baaziclub.net',
+    'FPMIS — Forensic Post-Mortem Intelligence System': 'https://fpmis.gurindersingh.dev'
+  };
+
+  function liveLabel(url) {
+    return String(url).replace(/^https?:\/\//, '').replace(/\/+$/, '');
   }
 
   function cardHtml(p) {
@@ -582,8 +652,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
       p.stack.forEach(function (t) { parts.push('<span class="chip">' + esc(t) + '</span>'); });
       parts.push('</div>');
     }
-    if (p.sourceUrl) {
-      parts.push('<div class="card-links"><a href="' + esc(p.sourceUrl) + '">Source</a></div>');
+    var live = p.liveUrl || LIVE[p.title];
+    if (live) {
+      parts.push('<div class="card-links"><a href="' + esc(live) + '">' +
+                 esc(liveLabel(live)) + ' \u2192</a></div>');
     }
     parts.push('</article>');
     return parts.join('');
