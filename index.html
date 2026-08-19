@@ -41,6 +41,11 @@
 
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
+/* Lenis takes over scrolling; native smooth must be off or they fight */
+html.lenis,html.lenis body{height:auto;}
+html.lenis{scroll-behavior:auto;}
+.lenis.lenis-smooth{scroll-behavior:auto !important;}
+.lenis.lenis-stopped{overflow:hidden;}
 body{
   margin:0;
   background:var(--bg);
@@ -135,7 +140,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
 /* ---------- sections ---------- */
 section{
   padding:84px 0;border-bottom:1px solid var(--line);
-  content-visibility:auto;contain-intrinsic-size:auto 640px;
 }
 /* alternating bands so the page reads as distinct sections, not one wall */
 main > section:nth-of-type(even){background:var(--band);}
@@ -289,6 +293,40 @@ p:last-child{margin-bottom:0;}
 footer{padding:34px 0 46px;font-family:var(--mono);font-size:.78rem;color:var(--muted);}
 footer .wrap{display:flex;justify-content:space-between;gap:10px 32px;flex-wrap:wrap;}
 
+/* ---------- scroll progress ---------- */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:100%;z-index:80;
+  transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--amber),var(--cyan));
+  pointer-events:none;
+}
+
+/* ---------- split heading ---------- */
+.ch{display:inline-block;will-change:transform,opacity;}
+
+/* ---------- stat counters ---------- */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  margin:0 0 34px;padding:0;list-style:none;
+}
+.stats li{
+  background:linear-gradient(180deg,var(--surface-2),var(--surface));
+  border:1px solid var(--line);border-radius:8px;padding:18px 16px;
+  box-shadow:var(--shadow-sm);
+}
+.stats .n{
+  font-family:var(--mono);font-weight:700;
+  font-size:clamp(1.5rem,3.6vw,2.05rem);
+  color:var(--amber);line-height:1.1;display:block;letter-spacing:-.03em;
+}
+.stats .l{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--muted);margin-top:6px;display:block;
+}
+@media (max-width:640px){
+  .stats{grid-template-columns:repeat(2,1fr);gap:12px;}
+}
+
 /* ---------- scroll reveal ----------
    Only active once JS adds .js-anim, so with JS off nothing is ever hidden. */
 .js-anim .rv{opacity:0;transform:translateY(18px);}
@@ -318,12 +356,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px 32px;flex-wrap:
   .js-anim .rv{opacity:1 !important;transform:none !important;}
   .card:hover,.btn:hover{transform:none;}
   .systems .dot{animation:none;}
+  .progress{display:none;}
+  .ch{opacity:1 !important;transform:none !important;}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <nav class="site-nav" aria-label="Primary">
   <div class="nav-inner">
@@ -474,6 +519,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px 32px;flex-wrap:
     <div class="wrap">
       <p class="sec-label">04 — Projects</p>
       <h2><span class="brace">/*</span> What I've built <span class="brace">*/</span></h2>
+
+      <ul class="stats">
+        <li><span class="n" data-count="3">3</span><span class="l">Services in production</span></li>
+        <li><span class="n" data-count="4">4</span><span class="l">Games shipped</span></li>
+        <li><span class="n" data-count="8">8</span><span class="l">FPMIS modules</span></li>
+        <li><span class="n" data-count="5">5</span><span class="l">Developers led</span></li>
+      </ul>
+
       <div class="projects" id="projects-list" aria-busy="false">
 
         <article class="card">
@@ -655,56 +708,146 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px 32px;flex-wrap:
 </footer>
 
 <script>
-/* Scroll reveal. Runs first so sections are marked before paint.
-   If this script fails, .js-anim is never added and everything stays visible. */
+/* ============================================================
+   Motion layer: Lenis smooth scroll + GSAP ScrollTrigger.
+   Every effect is progressive enhancement. If a CDN fails or the
+   user prefers reduced motion, content renders normally and
+   nothing is ever left hidden.
+   ============================================================ */
 (function () {
   'use strict';
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced || !('IntersectionObserver' in window)) return;
 
-  document.documentElement.classList.add('js-anim');
+  var reduced = window.matchMedia &&
+                window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
   }
 
-  ready(function () {
-    var targets = [];
+  /* ---------- fallback reveal (no GSAP) ---------- */
+  function fallbackReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    document.documentElement.classList.add('js-anim');
+    ready(function () {
+      var els = document.querySelectorAll('main > section .wrap > *');
+      els.forEach(function (el) { el.classList.add('rv'); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+      els.forEach(function (el) { io.observe(el); });
+      setTimeout(function () {
+        document.querySelectorAll('.rv:not(.in)').forEach(function (el) {
+          if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
+        });
+      }, 3000);
+    });
+  }
+
+  if (reduced) return;   // honour the user's system setting, do nothing
+
+  window.addEventListener('load', function () {
+
+    var hasGSAP = typeof window.gsap !== 'undefined' &&
+                  typeof window.ScrollTrigger !== 'undefined';
+    var hasLenis = typeof window.Lenis !== 'undefined';
+
+    if (!hasGSAP) { fallbackReveal(); return; }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ---------- 1. Lenis inertial scrolling ---------- */
+    var lenis = null;
+    if (hasLenis) {
+      lenis = new Lenis({
+        duration: 1.05,
+        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        smoothWheel: true,
+        smoothTouch: false          // native touch scrolling stays native
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+
+      // in-page links must still work
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (ev) {
+          var id = a.getAttribute('href');
+          if (!id || id === '#') return;
+          var target = document.querySelector(id);
+          if (!target) return;
+          ev.preventDefault();
+          lenis.scrollTo(target, { offset: -70, duration: 1.1 });
+          // keep keyboard focus in sync for screen reader / tab order
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+        });
+      });
+    }
+
+    /* ---------- 2. Scroll progress bar ---------- */
+    var bar = document.getElementById('progress');
+    if (bar) {
+      gsap.to(bar, {
+        scaleX: 1,
+        ease: 'none',
+        scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 }
+      });
+    }
+
+    /* ---------- 3. Split-text heading ---------- */
+    var h1 = document.querySelector('.hero h1');
+    if (h1 && !h1.dataset.split) {
+      var full = h1.textContent.trim();
+      h1.setAttribute('aria-label', full);   // screen readers read the whole name
+      h1.dataset.split = '1';
+      var frag = document.createDocumentFragment();
+      full.split('').forEach(function (chr) {
+        var s = document.createElement('span');
+        s.className = 'ch';
+        s.setAttribute('aria-hidden', 'true');
+        s.textContent = (chr === ' ' ? '\u00A0' : chr);
+        frag.appendChild(s);
+      });
+      h1.textContent = '';
+      h1.appendChild(frag);
+
+      gsap.from(h1.querySelectorAll('.ch'), {
+        yPercent: 108, opacity: 0, duration: 0.62,
+        ease: 'power3.out', stagger: 0.028, delay: 0.15
+      });
+    }
+
+    /* ---------- 4. Staged section reveals ---------- */
     document.querySelectorAll('main > section').forEach(function (sec) {
-      var label = sec.querySelector('.sec-label');
-      var head  = sec.querySelector('h2');
-      if (label) targets.push([label, 0]);
-      if (head)  targets.push([head, 1]);
-      // direct content children, staggered
-      var kids = sec.querySelectorAll('.wrap > *:not(.sec-label):not(h2)');
-      kids.forEach(function (k) { targets.push([k, 2]); });
+      var kids = sec.querySelectorAll('.wrap > *');
+      if (!kids.length) return;
+      gsap.from(kids, {
+        y: 26, opacity: 0, duration: 0.66, ease: 'power2.out', stagger: 0.075,
+        scrollTrigger: { trigger: sec, start: 'top 82%', once: true }
+      });
     });
 
-    targets.forEach(function (pair) {
-      pair[0].classList.add('rv');
-      if (pair[1] === 1) pair[0].classList.add('rv-d1');
-      if (pair[1] === 2) pair[0].classList.add('rv-d2');
+    /* ---------- 5. Stat counters ---------- */
+    document.querySelectorAll('.stats .n').forEach(function (el) {
+      var target = parseInt(el.dataset.count, 10);
+      if (isNaN(target)) return;
+      var obj = { v: 0 };
+      gsap.to(obj, {
+        v: target, duration: 1.15, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onUpdate: function () { el.textContent = Math.round(obj.v); },
+        onComplete: function () { el.textContent = target; }
+      });
     });
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
-
-    targets.forEach(function (pair) { io.observe(pair[0]); });
-
-    // Safety net: if anything is still hidden after 3s, show it.
-    setTimeout(function () {
-      document.querySelectorAll('.rv:not(.in)').forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight) el.classList.add('in');
-      });
-    }, 3000);
+    /* recalculate once webfonts have settled */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+    }
   });
 })();
 
