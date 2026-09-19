@@ -1248,13 +1248,37 @@ select:focus-visible{
       <h2><span class="h2-in"><span class="brace">/*</span> What I've built <span class="brace">*/</span></span></h2>
 
       <ul class="stats">
-        <li><span class="n" data-count="3">3</span><span class="l">Services in production</span></li>
+        <li><span class="n" data-count="4">4</span><span class="l">Services in production</span></li>
         <li><span class="n" data-count="4">4</span><span class="l">Games shipped</span></li>
-        <li><span class="n" data-count="8">8</span><span class="l">FPMIS modules</span></li>
-        <li><span class="n" data-count="5">5</span><span class="l">Developers led</span></li>
+        <li><span class="n" data-count="87">87</span><span class="l">End-to-end checks</span></li>
+        <li><span class="n" data-count="2">2</span><span class="l">Five-person teams led</span></li>
       </ul>
 
       <div class="projects" id="projects-list" aria-busy="false">
+
+        <article class="card" data-pin="CrisisCore">
+          <div class="card-top">
+            <h3>CrisisCore</h3>
+            <span class="badge prod">Live demo</span>
+          </div>
+          <div class="field"><span class="k">Problem</span>
+            Crowd disasters at mass gatherings like the Kumbh Mela happen at the seams between three problems: crushes are detected too late, rescue slows exactly when routes are blocked, and medical posts and police are planned on static estimates. A review of ten research papers found none that unifies sensing, rescue and resource allocation on one operational picture.
+          </div>
+          <div class="field"><span class="k">Approach</span>
+            One command platform across eight modules. A CSRNet deep-learning model estimates crowd density per zone from camera frames; a risk engine turns those noisy counts into Safe, Watch or Critical states; pilgrims raise a one-tap SOS from an Android app and the nearest suitable unit is dispatched automatically; resource shortfalls are forecast zone by zone. MCA major project, VIT Bhopal University.
+          </div>
+          <div class="field"><span class="k">Engineering</span>
+            Led a team of five and designed the architecture and the API contract the team built against. The Spring Boot risk engine combines median smoothing, least-squares trend detection, hysteresis and a dwell time, and raised a critical alert 36 seconds before a simulated surge reached danger. SOS dispatch scores units by distance and availability through a strict incident state machine, with a median of 9&nbsp;ms to assign. Pilgrim data is encrypted with AES-256-GCM and matched through HMAC hashes, with recorded consent and audited access; staff use JWT with role-based permissions. 72 unit tests and 87 end-to-end checks pass. Deployed with Docker and Nginx on Oracle Cloud with automated TLS.
+          </div>
+          <div class="stack">
+            <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Spring Security</span>
+            <span class="chip">PyTorch</span><span class="chip">React</span><span class="chip">Kotlin</span>
+            <span class="chip">Docker</span><span class="chip">Nginx</span>
+          </div>
+          <div class="card-links">
+            <a href="https://crisiscore.gurindersingh.dev">crisiscore.gurindersingh.dev &rarr;</a>
+          </div>
+        </article>
 
         <article class="card">
           <div class="card-top">
@@ -1307,9 +1331,10 @@ select:focus-visible{
 
       <h3 style="margin:44px 0 8px;">In production</h3>
       <p class="prose" style="font-size:.97rem;margin-bottom:20px;">
-        Three services, one Ubuntu ARM instance I provision and maintain. Each sits
-        behind Nginx with its own certificate; application data lives in managed
-        Postgres, so the server itself holds no state and can be rebuilt from scratch.
+        Four services. Three run on one Ubuntu ARM instance I provision and maintain,
+        each behind Nginx with its own certificate; the fourth is a static site on
+        Cloudflare's edge. The API and FPMIS keep their data in managed Postgres, and
+        the CrisisCore demo keeps a resettable database in a Docker volume.
       </p>
 
       <div class="diagram-wrap">
@@ -1389,19 +1414,20 @@ select:focus-visible{
         <li>It reads and writes to managed Neon Postgres over JDBC, then the response returns along the same path.</li>
       </ol>
 
-      <p class="sr-only">The host runs Nginx as a reverse proxy in front of two containers &mdash; a Spring Boot API on Java 21 and a FastAPI service for FPMIS &mdash; with the database hosted separately on Neon.</p>
+      <p class="sr-only">The host runs Nginx as a reverse proxy in front of three container stacks &mdash; the Spring Boot API, FPMIS on FastAPI, and CrisisCore &mdash; with the API and FPMIS databases hosted separately on Neon.</p>
 
       <div class="iso-wrap">
         <p class="mini-cap">Exploded view &mdash; what actually runs on the host</p>
         <div class="iso-scroll">
-        <svg class="iso" viewBox="0 0 880 470" aria-hidden="true" focusable="false"
+        <svg class="iso" viewBox="0 0 880 510" aria-hidden="true" focusable="false"
              xmlns="http://www.w3.org/2000/svg">
 
           <!-- drop lines between layers -->
           <line class="iso-drop" x1="280" y1="112" x2="280" y2="132"/>
-          <line class="iso-drop" x1="206" y1="244" x2="206" y2="266"/>
-          <line class="iso-drop" x1="356" y1="244" x2="356" y2="266"/>
-          <line class="iso-drop" x1="280" y1="318" x2="280" y2="340"/>
+          <line class="iso-drop" x1="184" y1="246" x2="184" y2="268"/>
+          <line class="iso-drop" x1="280" y1="246" x2="280" y2="268"/>
+          <line class="iso-drop" x1="376" y1="246" x2="376" y2="268"/>
+          <line class="iso-drop" x1="280" y1="354" x2="280" y2="376"/>
 
           <!-- layer 1 : edge -->
           <path class="iso-slab" d="M176 66 L280 14 L384 66 L280 118 Z"/>
@@ -1414,29 +1440,33 @@ select:focus-visible{
           <text class="iso-s" x="402" y="193">reverse proxy · certbot</text>
 
           <!-- layer 3 : the two containers -->
-          <path class="iso-slab" d="M150 292 L206 264 L262 292 L206 320 Z"/>
-          <text class="iso-t" x="140" y="288" text-anchor="end">api</text>
-          <text class="iso-s" x="140" y="303" text-anchor="end">Spring Boot · Java 21</text>
+          <path class="iso-slab" d="M140 292 L184 270 L228 292 L184 314 Z"/>
+          <text class="iso-t" x="184" y="332" text-anchor="middle">api</text>
+          <text class="iso-s" x="184" y="346" text-anchor="middle">Spring Boot</text>
 
-          <path class="iso-slab" d="M300 292 L356 264 L412 292 L356 320 Z"/>
-          <text class="iso-t" x="430" y="288">fpmis</text>
-          <text class="iso-s" x="430" y="303">FastAPI · Python</text>
+          <path class="iso-slab" d="M236 292 L280 270 L324 292 L280 314 Z"/>
+          <text class="iso-t" x="280" y="332" text-anchor="middle">fpmis</text>
+          <text class="iso-s" x="280" y="346" text-anchor="middle">FastAPI</text>
+
+          <path class="iso-slab" d="M332 292 L376 270 L420 292 L376 314 Z"/>
+          <text class="iso-t" x="376" y="332" text-anchor="middle">crisiscore</text>
+          <text class="iso-s" x="376" y="346" text-anchor="middle">Spring · React</text>
 
           <!-- layer 4 : data -->
-          <path class="iso-slab" d="M176 390 L280 338 L384 390 L280 442 Z"/>
-          <text class="iso-t" x="402" y="386">Neon</text>
-          <text class="iso-s" x="402" y="401">managed Postgres</text>
+          <path class="iso-slab" d="M176 430 L280 378 L384 430 L280 482 Z"/>
+          <text class="iso-t" x="402" y="426">Neon</text>
+          <text class="iso-s" x="402" y="441">managed Postgres</text>
 
           <!-- leader lines out to the annotations -->
           <polyline class="iso-lead" points="384,66 556,55 600,55"/>
           <polyline class="iso-lead" points="384,176 556,165 600,165"/>
-          <polyline class="iso-lead" points="412,292 556,291 600,291"/>
-          <polyline class="iso-lead" points="384,390 556,391 600,391"/>
+          <polyline class="iso-lead" points="420,292 556,291 600,291"/>
+          <polyline class="iso-lead" points="384,430 556,431 600,431"/>
 
           <circle class="iso-dot" cx="384" cy="66"  r="2.6"/>
           <circle class="iso-dot" cx="384" cy="176" r="2.6"/>
-          <circle class="iso-dot" cx="412" cy="292" r="2.6"/>
-          <circle class="iso-dot" cx="384" cy="390" r="2.6"/>
+          <circle class="iso-dot" cx="420" cy="292" r="2.6"/>
+          <circle class="iso-dot" cx="384" cy="430" r="2.6"/>
 
           <rect class="iso-note" x="600" y="40"  width="262" height="30" rx="5"/>
           <text class="iso-n" x="612" y="59">Static site served from edge cache</text>
@@ -1445,15 +1475,20 @@ select:focus-visible{
           <text class="iso-n" x="612" y="169">TLS terminates here, renewed on a timer</text>
 
           <rect class="iso-note" x="600" y="276" width="262" height="30" rx="5"/>
-          <text class="iso-n" x="612" y="295">Two containers, one 2-OCPU ARM host</text>
+          <text class="iso-n" x="612" y="295">Three stacks, one 2-OCPU ARM host</text>
 
-          <rect class="iso-note" x="600" y="376" width="262" height="30" rx="5"/>
-          <text class="iso-n" x="612" y="395">Off-host database, pooled connections</text>
+          <rect class="iso-note" x="600" y="416" width="262" height="30" rx="5"/>
+          <text class="iso-n" x="612" y="435">Off-host database, pooled connections</text>
         </svg>
         </div>
       </div>
 
       <ul class="systems">
+        <li>
+          <span class="dot" aria-hidden="true">&#9679;</span>
+          <a class="host" href="https://crisiscore.gurindersingh.dev">crisiscore.gurindersingh.dev</a>
+          <span class="what">CrisisCore — Spring Boot and React, orchestrated with Docker Compose</span>
+        </li>
         <li>
           <span class="dot" aria-hidden="true">&#9679;</span>
           <a class="host" href="https://api.gurindersingh.dev/docs">api.gurindersingh.dev</a>
@@ -1890,6 +1925,7 @@ select:focus-visible{
      Used only as a fallback — if the API ever returns a liveUrl field,
      that wins and this map can be deleted. */
   var LIVE = {
+    'CrisisCore': 'https://crisiscore.gurindersingh.dev',
     'Baazi Club': 'https://baaziclub.net',
     'FPMIS — Forensic Post-Mortem Intelligence System': 'https://fpmis.gurindersingh.dev'
   };
@@ -1938,7 +1974,16 @@ select:focus-visible{
       .then(function (data) {
         if (timer) clearTimeout(timer);
         if (!Array.isArray(data) || data.length === 0) return;
-        list.innerHTML = data.map(cardHtml).join('');
+        /* A card marked data-pin survives the swap until the API returns a
+           project with the same title, so adding a project to the page never
+           depends on the database being updated first. */
+        var known = {};
+        data.forEach(function (p) { known[p.title] = true; });
+        var pinned = Array.prototype.filter.call(
+          list.querySelectorAll('.card[data-pin]'),
+          function (c) { return !known[c.getAttribute('data-pin')]; }
+        ).map(function (c) { return c.outerHTML; });
+        list.innerHTML = pinned.join('') + data.map(cardHtml).join('');
       })
       .catch(function () {
         if (timer) clearTimeout(timer);
@@ -2676,6 +2721,9 @@ select:focus-visible{
   }
 
   var DIAGRAMS = [
+    { match: 'crisiscore', cap: 'Request path',
+      nodes: [['Camera', 'CSRNet · PyTorch'], ['Risk engine', 'Spring Boot'],
+              ['Dispatch', 'state machine'], ['Dashboard', 'React · Android']] },
     { match: 'baazi', cap: 'Request path',
       nodes: [['Android', 'Java · TalkBack'], ['Firebase Auth', 'identity'],
               ['Realtime DB', 'game state'], ['Voice room', 'WebRTC']] },
